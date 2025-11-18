@@ -3,6 +3,7 @@ import { appStore } from '../store/appStore';
 import { useNombre } from '@/context/useNombre';
 
 function Hola() {
+    //CAMBIO DE TEMA CON STORE
     const theme = useStore(appStore, (state) => state.theme);
     //CONTEXTO COMPARTIDO
     const{nombre, setNombre} = useNombre();
