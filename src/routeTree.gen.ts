@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as HolaRouteImport } from './routes/hola'
 import { Route as HelloRouteImport } from './routes/hello'
@@ -16,6 +17,11 @@ import { Route as AdiosRouteImport } from './routes/adios'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 
+const TasksRoute = TasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/hello': typeof HelloRoute
   '/hola': typeof HolaRoute
   '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/hello': typeof HelloRoute
   '/hola': typeof HolaRoute
   '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/hello': typeof HelloRoute
   '/hola': typeof HolaRoute
   '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
 }
 export interface FileRouteTypes {
@@ -80,9 +89,17 @@ export interface FileRouteTypes {
     | '/hello'
     | '/hola'
     | '/settings'
+    | '/tasks'
     | '/demo/tanstack-query'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/adios' | '/hello' | '/hola' | '/settings' | '/demo/tanstack-query'
+  to:
+    | '/'
+    | '/adios'
+    | '/hello'
+    | '/hola'
+    | '/settings'
+    | '/tasks'
+    | '/demo/tanstack-query'
   id:
     | '__root__'
     | '/'
@@ -90,6 +107,7 @@ export interface FileRouteTypes {
     | '/hello'
     | '/hola'
     | '/settings'
+    | '/tasks'
     | '/demo/tanstack-query'
   fileRoutesById: FileRoutesById
 }
@@ -99,11 +117,19 @@ export interface RootRouteChildren {
   HelloRoute: typeof HelloRoute
   HolaRoute: typeof HolaRoute
   SettingsRoute: typeof SettingsRoute
+  TasksRoute: typeof TasksRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -155,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   HelloRoute: HelloRoute,
   HolaRoute: HolaRoute,
   SettingsRoute: SettingsRoute,
+  TasksRoute: TasksRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
 }
 export const routeTree = rootRouteImport
