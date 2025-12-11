@@ -18,6 +18,9 @@ function Login() {
     onSuccess: (data) => {
       // Guardar en localStorage
       localStorage.setItem('authToken', data.token)
+      if (data.refreshToken) {
+        localStorage.setItem('refreshToken', data.refreshToken)
+      }
       localStorage.setItem('user', JSON.stringify({ username: data.username, roles: data.roles }))
       
       // Actualizar store

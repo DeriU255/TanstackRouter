@@ -2,6 +2,7 @@ import client from "./axiosClient";
 
 interface LoginResponse {
   token: string;
+  refreshToken: string;
   username: string;
   roles: string[];
 }
@@ -16,6 +17,9 @@ export async function login(username: string, password: string) {
   }
 
   localStorage.setItem("authToken", data.token);
+  if (data.refreshToken) {
+    localStorage.setItem("refreshToken", data.refreshToken);
+  }
   // Guardamos también datos básicos del usuario si los necesitamos luego
   localStorage.setItem("user", JSON.stringify({ username: data.username, roles: data.roles }));
   
@@ -24,6 +28,7 @@ export async function login(username: string, password: string) {
 
 export function logout() {
   localStorage.removeItem("authToken");
+  localStorage.removeItem("refreshToken");
   localStorage.removeItem("user");
   window.location.href = "/login";
 }

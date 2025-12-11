@@ -14,7 +14,11 @@ function Heroes() {
   // 1. Query para obtener los héroes (GET)
   const { data: heroes, isLoading, error } = useQuery({
     queryKey: ['heroes'],
-    queryFn: getHeroes,
+    queryFn: async () => {
+      const data = await getHeroes()
+      console.log('Héroes recibidos:', data)
+      return data
+    },
   })
 
   // Estado para el formulario de nuevo héroe
@@ -64,7 +68,7 @@ function Heroes() {
             <label className="block text-sm font-medium">Base</label>
             <input
               type="text"
-              value={newHeroe.base}
+              value={newHeroe.base || ''}
               onChange={(e) => setNewHeroe({ ...newHeroe, base: e.target.value })}
               className="border p-2 rounded dark:bg-gray-700 dark:border-gray-600"
               required

@@ -5,7 +5,7 @@ import client from "./axiosClient";
 export interface Heroe {
   idHeroe: number;
   nombre: string;
-  base: string;
+  base: string | null;
   descripcion?: string;
 }
 
