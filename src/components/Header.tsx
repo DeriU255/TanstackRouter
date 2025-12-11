@@ -238,6 +238,17 @@ const NavContent = ({ closeMenu }: { closeMenu?: () => void }) => {
       </Link>
 
       <Link
+        to="/equipos"
+        onClick={handleClick}
+        className={`flex items-center gap-3 p-3 rounded-lg transition-colors mb-2 ${
+          theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-200'
+        }`}
+        activeProps={{ className: 'bg-cyan-600 hover:bg-cyan-700' }}
+      >
+        <span className="font-medium">🛡️ Equipos</span>
+      </Link>
+
+      <Link
         to="/login"
         onClick={handleClick}
         className={`flex items-center gap-3 p-3 rounded-lg transition-colors mb-2 ${
