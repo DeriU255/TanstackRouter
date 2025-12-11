@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ImagenesRouteImport } from './routes/imagenes'
 import { Route as HolaRouteImport } from './routes/hola'
 import { Route as HelloRouteImport } from './routes/hello'
@@ -26,6 +27,11 @@ const TasksRoute = TasksRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImagenesRoute = ImagenesRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/hello': typeof HelloRoute
   '/hola': typeof HolaRoute
   '/imagenes': typeof ImagenesRoute
+  '/login': typeof LoginRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/hello': typeof HelloRoute
   '/hola': typeof HolaRoute
   '/imagenes': typeof ImagenesRoute
+  '/login': typeof LoginRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/hello': typeof HelloRoute
   '/hola': typeof HolaRoute
   '/imagenes': typeof ImagenesRoute
+  '/login': typeof LoginRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/hello'
     | '/hola'
     | '/imagenes'
+    | '/login'
     | '/settings'
     | '/tasks'
     | '/demo/tanstack-query'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/hello'
     | '/hola'
     | '/imagenes'
+    | '/login'
     | '/settings'
     | '/tasks'
     | '/demo/tanstack-query'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/hello'
     | '/hola'
     | '/imagenes'
+    | '/login'
     | '/settings'
     | '/tasks'
     | '/demo/tanstack-query'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   HelloRoute: typeof HelloRoute
   HolaRoute: typeof HolaRoute
   ImagenesRoute: typeof ImagenesRoute
+  LoginRoute: typeof LoginRoute
   SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/imagenes': {
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   HelloRoute: HelloRoute,
   HolaRoute: HolaRoute,
   ImagenesRoute: ImagenesRoute,
+  LoginRoute: LoginRoute,
   SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
