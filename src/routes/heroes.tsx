@@ -134,6 +134,11 @@ function Heroes() {
             />
             <h3 className="font-bold text-lg">{heroe.nombre}</h3>
             <p className="text-gray-600 dark:text-gray-300">Base: {heroe.base}</p>
+            {heroe.equipo && (
+              <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mt-1">
+                Equipo: {heroe.equipo.nombre}
+              </p>
+            )}
             {heroe.descripcion && <p className="text-sm mt-2">{heroe.descripcion}</p>}
           </div>
         ))}
