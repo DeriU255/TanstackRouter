@@ -14,6 +14,7 @@ import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ImagenesRouteImport } from './routes/imagenes'
 import { Route as HolaRouteImport } from './routes/hola'
+import { Route as HeroesRouteImport } from './routes/heroes'
 import { Route as HelloRouteImport } from './routes/hello'
 import { Route as AdiosRouteImport } from './routes/adios'
 import { Route as IndexRouteImport } from './routes/index'
@@ -44,6 +45,11 @@ const HolaRoute = HolaRouteImport.update({
   path: '/hola',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HeroesRoute = HeroesRouteImport.update({
+  id: '/heroes',
+  path: '/heroes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelloRoute = HelloRouteImport.update({
   id: '/hello',
   path: '/hello',
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adios': typeof AdiosRoute
   '/hello': typeof HelloRoute
+  '/heroes': typeof HeroesRoute
   '/hola': typeof HolaRoute
   '/imagenes': typeof ImagenesRoute
   '/login': typeof LoginRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adios': typeof AdiosRoute
   '/hello': typeof HelloRoute
+  '/heroes': typeof HeroesRoute
   '/hola': typeof HolaRoute
   '/imagenes': typeof ImagenesRoute
   '/login': typeof LoginRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/adios': typeof AdiosRoute
   '/hello': typeof HelloRoute
+  '/heroes': typeof HeroesRoute
   '/hola': typeof HolaRoute
   '/imagenes': typeof ImagenesRoute
   '/login': typeof LoginRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adios'
     | '/hello'
+    | '/heroes'
     | '/hola'
     | '/imagenes'
     | '/login'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adios'
     | '/hello'
+    | '/heroes'
     | '/hola'
     | '/imagenes'
     | '/login'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adios'
     | '/hello'
+    | '/heroes'
     | '/hola'
     | '/imagenes'
     | '/login'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdiosRoute: typeof AdiosRoute
   HelloRoute: typeof HelloRoute
+  HeroesRoute: typeof HeroesRoute
   HolaRoute: typeof HolaRoute
   ImagenesRoute: typeof ImagenesRoute
   LoginRoute: typeof LoginRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HolaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/heroes': {
+      id: '/heroes'
+      path: '/heroes'
+      fullPath: '/heroes'
+      preLoaderRoute: typeof HeroesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hello': {
       id: '/hello'
       path: '/hello'
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdiosRoute: AdiosRoute,
   HelloRoute: HelloRoute,
+  HeroesRoute: HeroesRoute,
   HolaRoute: HolaRoute,
   ImagenesRoute: ImagenesRoute,
   LoginRoute: LoginRoute,
